@@ -25,6 +25,7 @@ pyparsing==3.3.2
 pytest==8.4.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.1
+python-multipart
 scikit-learn
 sentence-transformers
 six==1.17.0
