@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+venv/
+.venv/
+.env
+
+# Node
+node_modules/
+
+# Build
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Database
+database.json
+
+# Python cache
+.pytest_cache/

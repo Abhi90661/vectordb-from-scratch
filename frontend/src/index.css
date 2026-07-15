@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+/*
+  Design direction: "instrument console for searching space."
+
+  HNSW is a navigable graph, IVF partitions space into clusters, KD-Tree
+  splits space recursively -- this whole project is fundamentally about
+  searching and navigating a space. The palette and motifs lean into that:
+  a deep-water instrument-panel background, a signal-teal accent (like a
+  sonar/depth-sounder readout) for data and AI-driven elements, and a
+  warm amber accent (like a CRT status light) for user-initiated actions,
+  with a faint coordinate-grid field behind page content as the one
+  signature visual motif -- literally the space being searched.
+
+  This overrides Tailwind's built-in slate/cyan/blue/green/red scales
+  directly, so every existing bg-slate-900, text-cyan-400, etc. class
+  already used throughout the app picks up the new palette automatically,
+  without needing to touch every file's JSX by hand.
+*/
+@theme {
+  /* Neutral scale -- page background, panels, borders, muted text */
+  --color-slate-950: #090d11;
+  --color-slate-900: #10161d;
+  --color-slate-800: #1b242d;
+  --color-slate-700: #2a3742;
+  --color-slate-600: #3c4b58;
+  --color-slate-400: #8695a3;
+  --color-slate-300: #aebac5;
+
+  /* Signal teal -- primary accent: data, search results, AI/RAG output */
+  --color-cyan-400: #5fd6c0;
+  --color-cyan-500: #3fc2aa;
+  --color-cyan-600: #2ca890;
+  --color-cyan-700: #218774;
+
+  /* Signal amber -- secondary accent: user-initiated actions */
+  --color-blue-600: #d98a3d;
+  --color-blue-900: #4a3520;
+
+  /* Phosphor green -- success / positive states */
+  --color-green-400: #7fe0a0;
+  --color-green-500: #5bc988;
+  --color-green-600: #429e6c;
+
+  /* Warm red -- errors, destructive actions (kept recognizably red, just
+     desaturated slightly so it sits in the same family as the rest) */
+  --color-red-950: #2a1210;
+  --color-red-400: #e8837a;
+  --color-red-300: #f0a79f;
+  --color-red-600: #b84a42;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-slate-950);
+  color: var(--color-slate-300);
+  font-family: var(--font-sans);
+}
+
+/*
+  The signature motif: a faint coordinate grid, like the space every one
+  of this project's index structures is searching over. Applied as a
+  utility class (.field) to page-level containers rather than globally,
+  so it stays a deliberate accent rather than visual noise everywhere.
+*/
+.field {
+  background-image:
+    linear-gradient(rgba(95, 214, 192, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 214, 192, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
