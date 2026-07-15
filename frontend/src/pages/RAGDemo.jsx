@@ -19,6 +19,10 @@ const [chats, setChats] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
+    const [algorithm, setAlgorithm] = useState("bruteforce");
+    const [switchingAlgorithm, setSwitchingAlgorithm] = useState(false);
+    const [benchmark, setBenchmark] = useState(null);
+
     useEffect(() => {
 
     async function initializeChat() {
@@ -106,6 +110,7 @@ setChats(chatsResponse.data);
                 // assistant message (previously this was always []),
                 // so reopening a past chat shows its Retrieved Chunks too.
                 sources: data.messages[i + 1]?.sources || [],
+                benchmark: data.messages[i + 1]?.benchmark,
 
             });
 
@@ -118,6 +123,32 @@ setChats(chatsResponse.data);
         console.error(err);
 
     }
+
+}
+
+async function changeAlgorithm(e) {
+
+    const selected = e.target.value;
+
+    setSwitchingAlgorithm(true);
+
+    try {
+
+        await api.post("/rag/index", {
+            index: selected,
+        });
+
+        setAlgorithm(selected);
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Failed to switch algorithm");
+
+    }
+
+    setSwitchingAlgorithm(false);
 
 }
 
@@ -174,12 +205,15 @@ setChats(chatsResponse.data);
     }
 );
 
+setBenchmark(data.benchmark);
+
             setMessages((prev) => [
     ...prev,
     {
         question: question,
         answer: data.answer,
         sources: data.sources,
+        benchmark: data.benchmark,
     },
 ]);
 
@@ -266,9 +300,77 @@ setChats(chatsResponse.data);
         RAG Demo
     </h1>
 
-    
+</div>
+
+<div className="bg-slate-900 rounded-xl p-6 mb-8">
+
+    <h2 className="text-xl font-bold mb-5">
+        Search Algorithm
+    </h2>
+
+    <select
+        value={algorithm}
+        onChange={changeAlgorithm}
+        disabled={switchingAlgorithm}
+        className="w-full bg-slate-800 rounded p-4"
+    >
+        <option value="bruteforce">Brute Force</option>
+        <option value="kdtree">KD Tree</option>
+        <option value="ivf">IVF</option>
+        <option value="hnsw">HNSW</option>
+    </select>
+
+    <p className="text-slate-400 text-sm mt-3">
+        {switchingAlgorithm
+            ? "Rebuilding index..."
+            : `Current Algorithm: ${algorithm}`}
+    </p>
 
 </div>
+
+{benchmark && (
+
+<div className="grid grid-cols-3 gap-6 mb-8">
+
+    <div className="bg-slate-900 rounded-xl p-6 border border-slate-700">
+
+        <p className="text-slate-400 text-sm">
+            Algorithm
+        </p>
+
+        <h2 className="text-3xl font-bold text-cyan-400 mt-2">
+            {benchmark.algorithm}
+        </h2>
+
+    </div>
+
+    <div className="bg-slate-900 rounded-xl p-6 border border-slate-700">
+
+        <p className="text-slate-400 text-sm">
+            Search Time
+        </p>
+
+        <h2 className="text-3xl font-bold text-green-400 mt-2">
+            {benchmark.time_ms} ms
+        </h2>
+
+    </div>
+
+    <div className="bg-slate-900 rounded-xl p-6 border border-slate-700">
+
+        <p className="text-slate-400 text-sm">
+            Indexed Vectors
+        </p>
+
+        <h2 className="text-3xl font-bold text-blue-600 mt-2 font-mono">
+            {benchmark.vector_count}
+        </h2>
+
+    </div>
+
+</div>
+
+)}
 
 <div className="bg-slate-900 rounded-xl p-6 mb-8">
 
@@ -349,6 +451,26 @@ setChats(chatsResponse.data);
         <div className="whitespace-pre-wrap leading-8">
             {chat.answer}
         </div>
+
+        {chat.benchmark && (
+
+<div className="mt-5 flex gap-6 text-sm text-slate-400 border-t border-slate-700 pt-4">
+
+    <span>
+        ⚡ {chat.benchmark.algorithm}
+    </span>
+
+    <span>
+        ⏱ {chat.benchmark.time_ms} ms
+    </span>
+
+    <span>
+        📦 {chat.benchmark.vector_count} vectors
+    </span>
+
+</div>
+
+)}
 
     </div>
 

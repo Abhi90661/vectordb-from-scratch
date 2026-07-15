@@ -1,0 +1,222 @@
+[
+    {
+        "id": "6ea653df-3269-4162-a22d-b7bd2e8d344f",
+        "title": "what is this document about?",
+        "created_at": "2026-07-15T20:03:07.296803",
+        "messages": [
+            {
+                "role": "user",
+                "content": "what is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T20:03:36.296457"
+            },
+            {
+                "role": "assistant",
+                "content": "This document is about explaining the basics of Artificial Intelligence, its subsets (Machine Learning and Deep Learning), and related concepts such as Retrieval Augmented Generation (RAG), vector databases, and embeddings.",
+                "sources": [
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 0.7751578928543436
+                    },
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 0.7751578928543436
+                    },
+                    {
+                        "text": "Artificial Intelligence is the field of creating machines that can perform tasks requiring human intelligence.\n\nMachine Learning is a subset of Artificial Intelligence that allows computers to learn patterns from data instead of being explicitly programmed.\n\nDeep Learning is a subset of Machine Learning based on neural networks with many hidden layers.\n\nVector databases store embeddings and allow semantic similarity search.\n\nEmbeddings are numerical representations of text that capture meaning.\n",
+                        "source": "note2.txt",
+                        "distance": 0.8238290400310163
+                    }
+                ],
+                "timestamp": "2026-07-15T20:03:36.841166"
+            },
+            {
+                "role": "user",
+                "content": "What is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T20:04:54.786646"
+            },
+            {
+                "role": "assistant",
+                "content": "This document is about explaining the basics of Artificial Intelligence, its subsets (Machine Learning and Deep Learning), and related concepts such as Retrieval Augmented Generation (RAG), vector databases, and embeddings.",
+                "sources": [
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 1.2451167736238837
+                    },
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 1.2451167736238837
+                    },
+                    {
+                        "text": "Artificial Intelligence is the field of creating machines that can perform tasks requiring human intelligence.\n\nMachine Learning is a subset of Artificial Intelligence that allows computers to learn patterns from data instead of being explicitly programmed.\n\nDeep Learning is a subset of Machine Learning based on neural networks with many hidden layers.\n\nVector databases store embeddings and allow semantic similarity search.\n\nEmbeddings are numerical representations of text that capture meaning.\n",
+                        "source": "note2.txt",
+                        "distance": 1.283611350181157
+                    }
+                ],
+                "timestamp": "2026-07-15T20:04:55.492637"
+            },
+            {
+                "role": "user",
+                "content": "what is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T20:06:09.149610"
+            },
+            {
+                "role": "assistant",
+                "content": "This document is about Retrieval Augmented Generation (RAG), a process that retrieves relevant documents from a vector database and uses a Large Language Model to generate accurate answers.",
+                "sources": [
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 1.2451167736238837
+                    },
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 1.2451167736238837
+                    }
+                ],
+                "timestamp": "2026-07-15T20:06:09.806878"
+            },
+            {
+                "role": "user",
+                "content": "what is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T20:07:43.243509"
+            },
+            {
+                "role": "assistant",
+                "content": "This document is about explaining the basics of Artificial Intelligence, its subsets (Machine Learning and Deep Learning), and related concepts such as Retrieval Augmented Generation (RAG), vector databases, and embeddings.",
+                "sources": [
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 0.7751578928543436
+                    },
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 0.7751578928543436
+                    },
+                    {
+                        "text": "Artificial Intelligence is the field of creating machines that can perform tasks requiring human intelligence.\n\nMachine Learning is a subset of Artificial Intelligence that allows computers to learn patterns from data instead of being explicitly programmed.\n\nDeep Learning is a subset of Machine Learning based on neural networks with many hidden layers.\n\nVector databases store embeddings and allow semantic similarity search.\n\nEmbeddings are numerical representations of text that capture meaning.\n",
+                        "source": "note2.txt",
+                        "distance": 0.8238290400310163
+                    }
+                ],
+                "timestamp": "2026-07-15T20:07:44.076707"
+            }
+        ]
+    },
+    {
+        "id": "43db2afa-d43e-4fd2-ba83-2758ad3860e3",
+        "title": "What is this document about?",
+        "created_at": "2026-07-15T18:50:22.040243",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T18:52:35.691462"
+            },
+            {
+                "role": "user",
+                "content": "What is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T18:52:38.788161"
+            },
+            {
+                "role": "user",
+                "content": "What is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T19:05:22.428228"
+            },
+            {
+                "role": "assistant",
+                "content": "I couldn't find that information in the uploaded documents.",
+                "sources": [],
+                "timestamp": "2026-07-15T19:05:22.959758"
+            },
+            {
+                "role": "user",
+                "content": "What is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T19:10:36.416469"
+            },
+            {
+                "role": "assistant",
+                "content": "This document is about Artificial Intelligence, specifically its subsets (Machine Learning and Deep Learning), and related concepts such as Retrieval Augmented Generation (RAG) and vector databases.",
+                "sources": [
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 0.7751578928543436
+                    },
+                    {
+                        "text": "Artificial Intelligence is the field of creating machines that can perform tasks requiring human intelligence.\n\nMachine Learning is a subset of Artificial Intelligence that allows computers to learn patterns from data instead of being explicitly programmed.\n\nDeep Learning is a subset of Machine Learning based on neural networks with many hidden layers.\n\nVector databases store embeddings and allow semantic similarity search.\n\nEmbeddings are numerical representations of text that capture meaning.\n",
+                        "source": "note2.txt",
+                        "distance": 0.8238290400310163
+                    }
+                ],
+                "timestamp": "2026-07-15T19:10:36.988029"
+            },
+            {
+                "role": "user",
+                "content": "what is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T19:28:23.380043"
+            },
+            {
+                "role": "assistant",
+                "content": "This document is about Retrieval Augmented Generation (RAG), a process that involves retrieving relevant documents from a vector database and using them to generate accurate answers with a Large Language Model.",
+                "sources": [
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 1.2451167736238837
+                    },
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 1.2451167736238837
+                    }
+                ],
+                "timestamp": "2026-07-15T19:28:24.069899"
+            },
+            {
+                "role": "user",
+                "content": "What is this document about?",
+                "sources": null,
+                "timestamp": "2026-07-15T20:01:35.124847"
+            },
+            {
+                "role": "assistant",
+                "content": "This document is about Artificial Intelligence and related concepts, including Retrieval Augmented Generation, Machine Learning, Deep Learning, vector databases, and embeddings.",
+                "sources": [
+                    {
+                        "text": "\nRetrieval Augmented Generation (RAG) first retrieves relevant documents from a vector database and then sends those documents to a Large Language Model to generate accurate answers.",
+                        "source": "note2.txt",
+                        "distance": 0.7751578928543436
+                    },
+                    {
+                        "text": "Artificial Intelligence is the field of creating machines that can perform tasks requiring human intelligence.\n\nMachine Learning is a subset of Artificial Intelligence that allows computers to learn patterns from data instead of being explicitly programmed.\n\nDeep Learning is a subset of Machine Learning based on neural networks with many hidden layers.\n\nVector databases store embeddings and allow semantic similarity search.\n\nEmbeddings are numerical representations of text that capture meaning.\n",
+                        "source": "note2.txt",
+                        "distance": 0.8238290400310163
+                    }
+                ],
+                "timestamp": "2026-07-15T20:01:35.770917"
+            }
+        ]
+    },
+    {
+        "id": "6db2a37d-8dbb-4f39-92eb-dedeb3cdb3ec",
+        "title": "New Chat",
+        "created_at": "2026-07-15T18:50:22.040004",
+        "messages": []
+    }
+]

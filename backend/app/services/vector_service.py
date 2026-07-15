@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import time
 
 from app.algorithms.brute_force import BruteForceIndex
 from app.algorithms.hnsw import HNSWIndex
@@ -7,20 +8,22 @@ from app.algorithms.ivf import IVFIndex
 from app.algorithms.kd_tree import KDTreeIndex
 from app.models.vector import VectorItem
 
-VECTOR_FILE = Path("storage/vectors.json")
+DEFAULT_VECTOR_FILE = Path("storage/vectors.json")
 
 
 class VectorService:
 
-    def __init__(self):
+    def __init__(self, vector_file=None):
+
         print("VectorService initialized")
 
         self.index = BruteForceIndex()
 
-        if VECTOR_FILE.exists():
+        self.vector_file = Path(vector_file) if vector_file else DEFAULT_VECTOR_FILE
+
+        if self.vector_file.exists():
             print("Loading vectors from disk...")
-            self.load_database(VECTOR_FILE)
-        
+            self.load_database()
     
 
     def insert(
@@ -60,6 +63,9 @@ class VectorService:
         self.save_database()
 
     def search(self, query, k, filter=None):
+
+        start = time.perf_counter()
+
         results = self.index.search(query, k=k)
 
         if filter:
@@ -109,7 +115,14 @@ class VectorService:
 
             results = filtered
 
-        return results[:k]
+        elapsed = (time.perf_counter() - start) * 1000
+
+        return {
+            "results": results[:k],
+            "time_ms": round(elapsed, 3),
+            "algorithm": self.index.__class__.__name__,
+            "vector_count": self.size(),
+        }
 
     def delete(self, id: str):
         try:
@@ -189,7 +202,9 @@ class VectorService:
 
         return []
 
-    def save_database(self, filename=VECTOR_FILE):
+    def save_database(self, filename=None):
+
+        filename = Path(filename) if filename else self.vector_file
 
         vectors = self.get_all_vectors()
 
@@ -202,7 +217,9 @@ class VectorService:
     
     
 
-    def load_database(self, filename=VECTOR_FILE):
+    def load_database(self, filename=None):
+
+        filename = Path(filename) if filename else self.vector_file
         
         print("Loading database...")
 

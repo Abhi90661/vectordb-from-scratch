@@ -1,4 +1,4 @@
-from app.services.vector_service import service
+from app.services.rag_vector_service import rag_service_db
 from app.services.llm_service import llm_service
 
 from sentence_transformers import SentenceTransformer
@@ -18,10 +18,14 @@ class RAGService:
         embedding = self.embed_text(question)
 
         # Retrieve nearest chunks from VectorDB
-        results = service.search(
+        
+        
+        search_data = rag_service_db.search(
             query=embedding,
             k=k,
         )
+
+        results = search_data["results"]
 
         # Combine retrieved chunks into context
         context = "\n\n".join(
@@ -48,7 +52,15 @@ class RAGService:
                 }
             )
 
-        return answer, sources
+        return {
+            "answer": answer,
+            "sources": sources,
+            "benchmark": {
+                "algorithm": search_data["algorithm"],
+                "time_ms": search_data["time_ms"],
+                "vector_count": search_data["vector_count"],
+            }
+        }
 
 
 rag_service = RAGService()

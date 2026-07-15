@@ -80,11 +80,17 @@ def bulk_insert_vectors(request: BulkVectorCreate):
 @router.post("/search")
 def search_vectors(request: SearchRequest):
 
-    results = service.search(
+    # service.search() now returns {results, time_ms, algorithm,
+    # vector_count} instead of a plain list -- this endpoint previously
+    # wasn't updated to match, so it crashed on every request trying to
+    # unpack the dict's keys as (item, distance) tuples.
+    search_data = service.search(
         query=request.query,
         k=request.k,
         filter=request.filter,
     )
+
+    results = search_data["results"]
 
     return [
         {

@@ -3,7 +3,7 @@ from fastapi import APIRouter, UploadFile, File
 import uuid
 
 from app.services.rag_service import rag_service
-from app.services.vector_service import service
+from app.services.rag_vector_service import rag_service_db
 from app.services.chat_service import chat_service
 
 from pydantic import BaseModel
@@ -24,19 +24,22 @@ class AskRequest(BaseModel):
 
     k: int = 3
     
+class IndexRequest(BaseModel):
+
+    index: str
+    
 @router.post("/rag/query")
 
 def query_document(request: QueryRequest):
 
     embedding = rag_service.embed_text(request.question)
 
-    results = service.search(
-
+    search_data = rag_service_db.search(
         query=embedding,
-
         k=request.k,
-
     )
+
+    results = search_data["results"]
 
     context = "\n\n".join(
 
@@ -55,25 +58,20 @@ def query_document(request: QueryRequest):
     )
 
     return {
-
         "answer": answer,
-
         "sources": [
-
             {
-
                 "source": item.metadata["source"],
-
                 "text": item.metadata["text"],
-
                 "distance": distance,
-
             }
-
             for item, distance in results
-
-        ]
-
+        ],
+        "benchmark": {
+            "algorithm": search_data["algorithm"],
+            "time_ms": search_data["time_ms"],
+            "vector_count": search_data["vector_count"],
+        },
     }
     
 @router.post("/rag/ask")
@@ -87,7 +85,8 @@ def ask_ai(request: AskRequest):
     )
 
     # Generate answer
-    answer, sources = rag_service.answer_question(
+    # Generate answer
+    response = rag_service.answer_question(
         request.question,
         request.k,
     )
@@ -96,14 +95,11 @@ def ask_ai(request: AskRequest):
     chat_service.add_message(
         request.chat_id,
         "assistant",
-        answer,
-        sources=sources,
+        response["answer"],
+        sources=response["sources"],
     )
 
-    return {
-        "answer": answer,
-        "sources": sources,
-    }
+    return response
 
 
 
@@ -127,7 +123,7 @@ async def upload_document(file: UploadFile = File(...)):
 
         embedding = rag_service.embed_text(chunk)
 
-        service.insert(
+        rag_service_db.insert(
             id=str(uuid.uuid4()),
             vector=embedding,
             metadata={
@@ -141,6 +137,16 @@ async def upload_document(file: UploadFile = File(...)):
     return {
         "message": "Document indexed successfully",
         "chunks": inserted,
+    }
+    
+@router.post("/rag/index")
+def change_rag_index(request: IndexRequest):
+
+    algorithm = rag_service_db.set_index(request.index)
+
+    return {
+        "message": "RAG search algorithm changed successfully",
+        "algorithm": algorithm,
     }
     
 @router.post("/chat/new")
